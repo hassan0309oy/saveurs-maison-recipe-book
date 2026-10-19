@@ -55,7 +55,7 @@
   --muted-foreground: oklch(0.48 0.025 42);
   --accent: oklch(0.93 0.03 72);
   --accent-foreground: oklch(0.3 0.05 40);
-  --gold: oklch(0.57 0.14 38);
+  --gold: oklch(0.72 0.12 45);
   --cream: oklch(0.945 0.025 72);
   --forest: oklch(0.32 0.06 40);
   --forest-foreground: oklch(0.945 0.025 72);
@@ -92,7 +92,7 @@
 @utility btn-gold {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   min-height: 3rem; padding: 0 1.75rem; border-radius: 999px; font-weight: 600;
-  background: var(--gold); color: var(--primary-foreground);
+  background: var(--primary); color: var(--primary-foreground);
   transition: transform .2s, filter .2s;
   &:hover { transform: translateY(-1px); filter: brightness(1.05); }
 }
