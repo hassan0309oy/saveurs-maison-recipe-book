@@ -257,7 +257,7 @@ function Reviews() {
 
 const faqs = [
   { q: "Que contient l'e-book ?", a: "Il présente 20 recettes gourmandes, avec leurs ingrédients, leurs quantités et leurs étapes de préparation." },
-  { q: "Comment recevoir mon e-book ?", a: "La vente en ligne n'est pas encore ouverte. Dès que le paiement sera activé, le mode de réception du fichier sera précisé ici." },
+  { q: "Comment recevoir mon e-book ?", a: "Clique sur « Acheter l'e-book » : tu es redirigé vers notre boutique sécurisée, où tu reçois ton e-book juste après le paiement." },
   { q: "Puis-je consulter l'e-book sur mon téléphone ?", a: "Oui, si ton appareil permet de lire le format du fichier fourni, tu peux consulter ton e-book sur téléphone, tablette ou ordinateur." },
   { q: "Ai-je besoin d'expérience en cuisine ?", a: "Les recettes sont présentées avec des étapes claires pour faciliter leur réalisation." },
   { q: "Que faire si je rencontre un problème après mon achat ?", a: CONTACT_EMAIL ? `Écris-nous à ${CONTACT_EMAIL}, nous te répondrons rapidement.` : "Une adresse de contact sera indiquée ici très prochainement." },
