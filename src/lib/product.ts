@@ -15,8 +15,9 @@ export const PRODUCT = {
   ],
 };
 
-// Set to true only once a real payment provider + digital delivery are connected.
-export const PAYMENT_ENABLED = false;
+// Purchase happens on the owner's external Beacons store (payment + delivery handled there).
+export const BUY_URL = "https://shop.beacons.ai/delices.maison/999d248f-b6f4-4f92-8c7c-c0b95e38968a";
+export const PAYMENT_ENABLED = true;
 
 // Real contact address — leave empty until configured.
 export const CONTACT_EMAIL = "";

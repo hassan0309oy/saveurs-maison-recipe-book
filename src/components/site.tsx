@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ChefHat, Menu, ShoppingBag, X, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
-import { PRODUCT, PAYMENT_ENABLED, formatPrice } from "@/lib/product";
+import { PRODUCT, BUY_URL, formatPrice } from "@/lib/product";
 import cover from "@/assets/cover.jpg";
 
 export function Logo({ light = false }: { light?: boolean }) {
@@ -93,8 +93,11 @@ function CartDrawer() {
         )}
         <div className="mt-auto space-y-3 border-t pt-4">
           <div className="flex justify-between font-semibold"><span>Total</span><span>{formatPrice(cart.qty * PRODUCT.priceCents)}</span></div>
-          <button className="btn-primary w-full" disabled={!PAYMENT_ENABLED || cart.qty === 0}>Passer au paiement</button>
-          {!PAYMENT_ENABLED && <p className="text-center text-xs text-muted-foreground">Le paiement en ligne sera disponible très prochainement.</p>}
+          {cart.qty > 0 ? (
+            <a href={BUY_URL} className="btn-primary w-full">Passer au paiement</a>
+          ) : (
+            <button className="btn-primary w-full" disabled>Passer au paiement</button>
+          )}
         </div>
       </aside>
     </div>
