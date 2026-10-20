@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen, Check, ChevronDown, Clock, ListChecks, Smartphone, Sparkles, Star, Utensils, Lightbulb, Tablet } from "lucide-react";
 import { useState } from "react";
 import { Header, Footer } from "@/components/site";
@@ -186,7 +186,7 @@ function Preview() {
             </ol>
           </div>
         </div>
-        <div className="mt-8 text-center"><a href={BUY_URL} className="btn-primary">Découvrir les 20 recettes</a></div>
+        <div className="mt-8 text-center"><a href="#ebook" className="btn-primary">Découvrir les 20 recettes</a></div>
       </div>
     </section>
   );
@@ -291,7 +291,7 @@ function FinalCta() {
       <div className="relative mx-auto max-w-3xl px-4 py-20 text-center md:py-28">
         <h2 className="text-4xl font-semibold sm:text-5xl">Et si tu te régalais dès aujourd'hui ?</h2>
         <p className="mx-auto mt-4 max-w-xl opacity-90">Découvre de nouvelles idées, prépare de bons petits plats et transforme tes repas en moments de plaisir.</p>
-        <Link to="/" hash="ebook" className="btn-gold mt-8">Je découvre mes 20 recettes</Link>
+        <a href="#ebook" className="btn-gold mt-8">Je découvre mes 20 recettes</a>
       </div>
     </section>
   );
