@@ -186,7 +186,7 @@ function Preview() {
             </ol>
           </div>
         </div>
-        <div className="mt-8 text-center"><a href={BUY_URL} className="btn-primary">Découvrir les 20 recettes</a></div>
+        <div className="mt-8 text-center"><a href="#ebook" className="btn-primary">Découvrir les 20 recettes</a></div>
       </div>
     </section>
   );
