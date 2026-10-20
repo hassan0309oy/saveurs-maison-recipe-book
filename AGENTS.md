@@ -12,5 +12,5 @@
 # AGENTS
 
 - Product data (price, description, payment flag, contact email) lives in src/lib/product.ts — single product site, keep one source of truth.
-- Purchase checkout stays disabled (PAYMENT_ENABLED=false) until a real payment provider and digital delivery are connected; never simulate payment.
+- Buying redirects to the owner's external store (BUY_URL in src/lib/product.ts); never build or simulate an on-site payment.
 - Reviews live in the REVIEWS array in src/routes/index.tsx; only authentic reviews may be added.
