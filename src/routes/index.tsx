@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookOpen, Check, ChevronDown, Clock, ListChecks, Smartphone, Sparkles, Star, Utensils, Lightbulb, Tablet } from "lucide-react";
 import { useState } from "react";
 import { Header, Footer } from "@/components/site";
-import { useCart } from "@/lib/cart";
-import { PRODUCT, PAYMENT_ENABLED, CONTACT_EMAIL, formatPrice } from "@/lib/product";
+import { PRODUCT, PAYMENT_ENABLED, BUY_URL, CONTACT_EMAIL, formatPrice } from "@/lib/product";
 import hero from "@/assets/hero.jpg";
 import cover from "@/assets/cover.jpg";
 import cta from "@/assets/cta.jpg";
-import dish from "@/assets/dish.jpg";
+import painPerdu from "@/assets/pain-perdu.jpg";
+import gnocchis from "@/assets/gnocchis.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -92,9 +92,8 @@ function Benefits() {
 }
 
 function BuyButton({ className = "" }: { className?: string }) {
-  const cart = useCart();
   return (
-    <button onClick={cart.add} className={`btn-primary ${className}`}>Acheter l'e-book</button>
+    <a href={BUY_URL} className={`btn-primary ${className}`}>Acheter l'e-book</a>
   );
 }
 
@@ -133,43 +132,61 @@ function PageCard({ children, rotate }: { children: React.ReactNode; rotate: str
   );
 }
 
+const previewIngredients = [
+  ["Ingrédient A", "200 g"], ["Ingrédient B", "120 g"], ["Ingrédient C", "50 ml"],
+  ["Ingrédient D", "40 g"], ["Ingrédient E", "15 g"], ["Ingrédient F", "10 g"],
+];
+const previewSteps = [
+  "Coupe les XXX en cubes de 3 cm et sèche-les avec du papier absorbant, puis mélange-les avec les XXX, du sel et un filet d'huile.",
+  "Fais fondre la moitié du XXX dans une grande poêle sur feu moyen-vif et fais dorer les XXX 6 à 8 min en remuant de temps en temps.",
+  "Baisse le feu, ajoute le reste du XXX et une pincée de XXX. Mélange 1 min pour bien enrober, puis réserve dans une assiette.",
+  "Coupe le feu, ajoute la moitié des XXX et 1 c. à soupe d'eau chaude. Remets le tout dans la poêle et mélange 1 min avant de servir.",
+];
+
 function Preview() {
   return (
     <section className="bg-cream py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
         <h2 className="text-center text-3xl font-semibold sm:text-4xl">Un aperçu de l'e-book</h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground">Aperçus d'illustration, pour donner une idée de la présentation — ce ne sont pas les pages exactes du livre.</p>
-        <div className="no-scrollbar -mx-4 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
-          <PageCard rotate="md:-rotate-2">
-            <p className="text-[10px] font-semibold tracking-widest text-gold">RECETTE</p>
-            <h3 className="mt-1 text-xl font-semibold">Bowl veggie gourmand</h3>
-            <img src={dish} alt="" width={816} height={816} loading="lazy" className="mt-3 aspect-square w-full rounded object-cover" />
-            <p className="mt-2 text-xs text-muted-foreground">Une présentation claire pour chaque recette.</p>
-          </PageCard>
-          <PageCard rotate="md:rotate-1">
-            <p className="text-[10px] font-semibold tracking-widest text-gold">INGRÉDIENTS</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              {["Ingrédient — quantité", "Ingrédient — quantité", "Ingrédient — quantité", "Ingrédient — quantité", "Ingrédient — quantité"].map((x, i) => (
-                <li key={i} className="flex justify-between border-b border-dashed pb-1.5"><span className="h-2 w-24 rounded bg-muted" /><span className="h-2 w-10 rounded bg-accent" /></li>
+        <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground">Un extrait de la mise en page : les ingrédients et les étapes sont volontairement masqués.</p>
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl border bg-card shadow-soft">
+            <img src={painPerdu} alt="Pain perdu brioché aux pommes caramélisées" width={1772} height={930} loading="lazy" className="aspect-[16/9] w-full object-cover" />
+            <figcaption className="p-4">
+              <p className="text-[10px] font-semibold tracking-widest text-primary">RECETTE 20 · DESSERT</p>
+              <p className="mt-1 text-lg font-semibold">Pain perdu brioché &amp; pommes caramélisées</p>
+              <p className="text-xs text-muted-foreground">15 min · 1 personne</p>
+            </figcaption>
+          </figure>
+          <figure className="overflow-hidden rounded-2xl border bg-card shadow-soft">
+            <img src={gnocchis} alt="Gnocchis dorés, poulet et sauce crémeuse au parmesan" width={1772} height={950} loading="lazy" className="aspect-[16/9] w-full object-cover" />
+            <figcaption className="p-4">
+              <p className="text-[10px] font-semibold tracking-widest text-primary">RECETTE 19 · GOURMAND</p>
+              <p className="mt-1 text-lg font-semibold">Gnocchis dorés, poulet &amp; sauce crémeuse</p>
+              <p className="text-xs text-muted-foreground">25 min · 1 personne</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          <div className="rounded-2xl border bg-card p-6 shadow-soft">
+            <p className="font-serif text-xl italic text-primary">Les ingrédients</p>
+            <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+              {previewIngredients.map(([n, q]) => (
+                <li key={n} className="flex items-end gap-2"><span>{n}</span><span className="mb-1 flex-1 border-b border-dotted border-muted-foreground/50" /><span className="font-semibold text-primary">{q}</span></li>
               ))}
             </ul>
-            <p className="mt-3 text-xs text-muted-foreground">Les ingrédients et leurs quantités.</p>
-          </PageCard>
-          <PageCard rotate="md:-rotate-1">
-            <p className="text-[10px] font-semibold tracking-widest text-gold">PRÉPARATION</p>
-            <ol className="mt-3 space-y-3 text-sm">
-              {[1, 2, 3, 4].map((n) => (
-                <li key={n} className="flex gap-2"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-xs text-primary-foreground">{n}</span><span className="mt-2 h-2 flex-1 rounded bg-muted" /></li>
+            <p className="mt-5 rounded-lg border border-dashed p-3 text-xs text-muted-foreground"><em className="font-serif text-primary">À prévoir aussi</em> — huile, sel, poivre, XXX, XXX (facultatif).</p>
+          </div>
+          <div className="rounded-2xl border bg-card p-6 shadow-soft">
+            <p className="font-serif text-xl italic text-primary">Préparation</p>
+            <ol className="mt-4 space-y-4 text-sm">
+              {previewSteps.map((s, i) => (
+                <li key={i} className="flex gap-3"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">{i + 1}</span><span>{s}</span></li>
               ))}
             </ol>
-            <p className="mt-3 text-xs text-muted-foreground">Des étapes détaillées, pas à pas.</p>
-          </PageCard>
-          <PageCard rotate="md:rotate-2">
-            <img src={cta} alt="" width={1600} height={912} loading="lazy" className="aspect-[3/4] w-full rounded object-cover" />
-            <p className="mt-2 text-xs text-muted-foreground">Des photos qui donnent envie.</p>
-          </PageCard>
+          </div>
         </div>
-        <div className="mt-8 text-center"><a href="#ebook" className="btn-primary">Découvrir l'e-book</a></div>
+        <div className="mt-8 text-center"><a href={BUY_URL} className="btn-primary">Découvrir les 20 recettes</a></div>
       </div>
     </section>
   );
